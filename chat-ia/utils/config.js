@@ -124,17 +124,34 @@ class ConfigManager {
      */
     set(key, value) {
         const keys = key.split('.');
+        
+        // Prevent prototype pollution
+        for (const k of keys) {
+            if (k === '__proto__' || k === 'constructor' || k === 'prototype') {
+                throw new Error('Invalid key: Cannot set prototype properties');
+            }
+        }
+        
         let target = this.config;
 
         for (let i = 0; i < keys.length - 1; i++) {
             const k = keys[i];
-            if (!(k in target) || typeof target[k] !== 'object') {
+            // Additional check for prototype pollution
+            if (k === '__proto__' || k === 'constructor' || k === 'prototype') {
+                throw new Error('Invalid key: Cannot set prototype properties');
+            }
+            if (!Object.prototype.hasOwnProperty.call(target, k) || typeof target[k] !== 'object' || target[k] === null) {
                 target[k] = {};
             }
             target = target[k];
         }
 
-        target[keys[keys.length - 1]] = value;
+        const finalKey = keys[keys.length - 1];
+        // Final check before assignment
+        if (finalKey === '__proto__' || finalKey === 'constructor' || finalKey === 'prototype') {
+            throw new Error('Invalid key: Cannot set prototype properties');
+        }
+        target[finalKey] = value;
     }
 
     /**

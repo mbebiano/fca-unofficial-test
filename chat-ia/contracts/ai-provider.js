@@ -51,20 +51,20 @@ class AIProvider {
 
     /**
      * Generate a response from the AI
-     * @param {AIRequest} request - The AI request
+     * @param {AIRequest} _request - The AI request
      * @returns {Promise<AIResponse>}
      */
-    async generate(request) {
+    async generate(_request) {
         throw new Error("Method 'generate' must be implemented");
     }
 
     /**
      * Stream a response from the AI
-     * @param {AIRequest} request - The AI request
-     * @param {Function} onChunk - Callback for each chunk
+     * @param {AIRequest} _request - The AI request
+     * @param {Function} _onChunk - Callback for each chunk
      * @returns {Promise<AIResponse>}
      */
-    async generateStream(request, onChunk) {
+    async generateStream(_request, _onChunk) {
         throw new Error("Method 'generateStream' must be implemented");
     }
 

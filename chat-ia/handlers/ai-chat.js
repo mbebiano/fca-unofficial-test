@@ -24,7 +24,7 @@ class AIChatHandler {
      */
     async handle(context) {
         try {
-            const { message, service, reply, sendTyping } = context;
+            const { message, reply, sendTyping } = context;
 
             // Send typing indicator
             if (this.options.typingIndicator) {

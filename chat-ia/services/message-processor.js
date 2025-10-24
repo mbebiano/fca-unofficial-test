@@ -3,7 +3,7 @@
  * Processes and routes messages to appropriate handlers
  */
 
-const { MessageContract, EventContract, EventTypes } = require('../contracts');
+const { MessageContract, EventContract } = require('../contracts');
 const EventEmitter = require('events');
 
 class MessageProcessorService extends EventEmitter {
