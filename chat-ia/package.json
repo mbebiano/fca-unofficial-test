@@ -1,0 +1,29 @@
+{
+  "name": "facebook-chat-ia",
+  "version": "1.0.0",
+  "description": "AI-powered chat bot framework for Facebook Messenger",
+  "main": "index.js",
+  "scripts": {
+    "example:basic": "node examples/basic-bot.js",
+    "example:ai": "node examples/ai-bot.js",
+    "example:commands": "node examples/command-bot.js"
+  },
+  "keywords": [
+    "facebook",
+    "messenger",
+    "chatbot",
+    "ai",
+    "openai",
+    "bot-framework"
+  ],
+  "author": "Chat IA Contributors",
+  "license": "MIT",
+  "peerDependencies": {
+    "@dongdev/fca-unofficial": "^1.0.20"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "chalk": "^4.1.2",
+    "events": "^3.3.0"
+  }
+}

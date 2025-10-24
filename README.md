@@ -6,6 +6,12 @@
 
 ![Image](https://files.catbox.moe/8urnyq.png)
 
+## 🤖 NEW: Facebook Chat IA Framework
+
+This repository now includes **Chat IA** - a complete AI-powered chat bot framework for Facebook Messenger! Build intelligent bots with AI integration, command systems, and conversation memory.
+
+[📚 View Chat IA Documentation](./chat-ia/README.md) | [🚀 Quick Start](#chat-ia-quick-start)
+
 _Disclaimer_: We are not responsible if your account gets banned for spammy activities such as sending lots of messages to people you don't know, sending messages very quickly, sending spammy looking URLs, logging in and out very quickly... Be responsible Facebook citizens.
 
 > We the @dongdev/fca-unofficiala team/contributors are recommending you to use the Firefox app for less logout, or use this website if you have no access on these browsers specially iOS user.
@@ -208,6 +214,60 @@ login({ appState: JSON.parse(fs.readFileSync("appstate.json", "utf8")) }, (err, 
 });
 
 ```
+
+---
+
+## Chat IA Quick Start
+
+Create an AI-powered Facebook bot in just a few lines:
+
+```javascript
+const login = require("@dongdev/fca-unofficial");
+const { createBot } = require("./chat-ia");
+const fs = require("fs");
+
+const credentials = { 
+    appState: JSON.parse(fs.readFileSync("appstate.json", "utf8"))
+};
+
+login(credentials, async (err, api) => {
+    if (err) return console.error(err);
+
+    // Create bot with AI
+    const bot = createBot(api, {
+        ai: {
+            enabled: true,
+            provider: "openai" // or 'mock' for testing
+        },
+        openai: {
+            apiKey: process.env.OPENAI_API_KEY,
+            model: "gpt-3.5-turbo"
+        }
+    });
+
+    // Add custom commands
+    bot.registerCommand("hello", {
+        description: "Say hello",
+        handler: async (context) => {
+            await context.reply("👋 Hello!");
+        }
+    });
+
+    await bot.start();
+    console.log("🤖 Bot is running!");
+});
+```
+
+### Chat IA Features
+
+- 🤖 **AI Integration**: OpenAI GPT support with conversation memory
+- 💬 **Command System**: Built-in commands + easy custom commands
+- 🔌 **Middleware**: Add custom logic to message processing
+- 📝 **Type Contracts**: Well-defined data structures
+- 🛡️ **Security**: User and thread filtering
+- 📊 **Events**: Rich event system for monitoring
+
+[📖 Full Chat IA Documentation](./chat-ia/README.md)
 
 `<a name="projects-using-this-api"></a>`
 
